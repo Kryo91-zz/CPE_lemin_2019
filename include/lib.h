@@ -13,6 +13,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-char    **my_str_to_word_array(char *str, char *lim);
+char **my_str_to_word_array(char *str, char sep);
 
 #endif /* !LIB_H_ */
