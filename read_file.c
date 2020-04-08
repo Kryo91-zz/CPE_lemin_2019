@@ -9,10 +9,10 @@
 
 void read_file(main_t *my_struct)
 {
-	char *buff = malloc(sizeof(char) * 4096);
+	char *buff = malloc(sizeof(char) * 10000);
 	int offset = 0;
 
-	while (read(0, buff + offset, 1) > 0 && offset < 4095)
+	while (read(0, buff + offset, 1) > 0 && offset < 9999)
 		offset += 1;
 	buff[offset] = '\0';
     my_struct->input = buff;
