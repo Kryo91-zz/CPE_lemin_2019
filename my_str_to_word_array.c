@@ -30,49 +30,51 @@ int	while_delim(char const *str, int i, char *lim)
     return (i);
 }
 
-int     count_word(char const *str, char *lim)
+int count_words(char *str, char sep)
 {
-    int     i = 0;
-    int	res = 1;
+    int lock = 0;
+    int nb_words = 1;
 
-    while (str[i]) {
-        i = while_delim(str, i, lim);
-        res += 1;
-        i++;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == sep && lock == 0) {
+            nb_words += 1;
+            lock = 1;
+        }
+        if (str[i] != sep)
+            lock = 0;
     }
-    return (res);
+    return (nb_words);
 }
 
-int word_size(char *str, int i, char *lim)
+int count_letters(char *str, int pos, char sep)
 {
-    int	len = 0;
+    int nb_letters = 0;
 
-    while (my_delim(str[i], lim) == 0 && str[i]) {
-        len++;
-        i++;
-    }
-    return (len);
+    for (; str[pos] != sep && str[pos] != '\0'; pos++)
+        nb_letters += 1;
+    return (nb_letters);
 }
 
-char    **my_str_to_word_array(char *str, char *lim)
+char **str_to_word_array(char *str, char sep)
 {
-    int nb_word = count_word(str, lim) + 2;
     int i = 0;
-    char    **tab;
-    int y = 0;
-    int x = 0;
+    int j = 0;
+    int pos = 0;
+    int nb_words = count_words(str, sep);
+    char **tab = malloc(sizeof(char *) * (nb_words + 1));
 
-    tab = malloc(sizeof(char *) * nb_word + 1);
-    while (str[i]) {
-        x = 0;
-        for (i = i; (my_delim(str[i], lim) == -1 && str[i]); i++);
-        tab[y] = malloc(sizeof(char) * (word_size(str, i, lim) + 1));
-        for (i = i; my_delim(str[i], lim) == 0 && str[i]; i++ , x++)
-            tab[y][x] = str[i];
-        tab[y][x] = '\0';
-        y++;
-        for (i = i; (my_delim(str[i], lim) == -1 && str[i]); i++);
+    while (str[pos]) {
+        if (str[pos] != sep) {
+            tab[i] = malloc(sizeof(char) * \
+            (count_letters(str, pos, sep) + 1));
+            for (; str[pos] != sep && str[pos] != '\0'; pos++, j++)
+                tab[i][j] = str[pos];
+            tab[i][j] = '\0';
+            j = 0;
+            i++;
+        } else
+            pos++;
     }
-    tab[y] = NULL;
+    tab[i] = NULL;
     return (tab);
 }
