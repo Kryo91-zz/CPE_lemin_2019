@@ -12,6 +12,7 @@ int main(void)
 {
     main_t struct_main;
     //error_management(&struct_main);
+    read_file(&struct_main);
     map_parsing(&struct_main);
     return (0);
 }

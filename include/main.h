@@ -15,7 +15,9 @@ typedef struct main_s
    int ant;
    int tunels;
    char **map;
+   char *input;
 }main_t;
 
+void read_file(main_t *my_struct);
 
 #endif /* !MAIN_H_ */
