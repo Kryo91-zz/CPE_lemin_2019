@@ -18,6 +18,18 @@ typedef struct main_s
    char *input;
 }main_t;
 
+typedef struct graph_s
+{
+   char *name;
+   int tunels;
+   struct graph_s *next;
+}graph_t;
+
 void read_file(main_t *my_struct);
+int comp(char *str1, char *str2);
+int size(char *str, char c);
+void cpy(char *str, char *cpy);
+void init_graph(main_t *m_struct, graph_t *graph);
+void create_graph(char **tunels, int where, graph_t *graph);
 
 #endif /* !MAIN_H_ */
