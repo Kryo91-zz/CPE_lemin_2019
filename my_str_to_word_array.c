@@ -55,7 +55,7 @@ int count_letters(char *str, int pos, char sep)
     return (nb_letters);
 }
 
-char **str_to_word_array(char *str, char sep)
+char **my_str_to_word_array(char *str, char sep)
 {
     int i = 0;
     int j = 0;
