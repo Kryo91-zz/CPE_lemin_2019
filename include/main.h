@@ -14,6 +14,7 @@ typedef struct main_s
 {
    int ant;
    int tunels;
+   char **map;
 }main_t;
 
 
