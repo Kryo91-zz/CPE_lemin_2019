@@ -15,6 +15,6 @@ int main(void)
     //error_management(&struct_main);
     read_file(&struct_main);
     map_parsing(&struct_main);
-    init_graph(&struct_main, graph);
+    graph = init_graph(&struct_main, graph);
     return (0);
 }

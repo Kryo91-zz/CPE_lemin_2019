@@ -56,7 +56,7 @@ int fill_tab(main_t *m_struct, char **tab, int start)
     return (where);
 }
 
-void init_graph(main_t *m_struct, graph_t *graph)
+graph_t *init_graph(main_t *m_struct, graph_t *graph)
 {
     int nb_start = 0;
     char **tunels;
@@ -74,4 +74,5 @@ void init_graph(main_t *m_struct, graph_t *graph)
     where = fill_tab(m_struct, tunels, nb_start);
     graph = malloc(sizeof(graph_t) * where);
     create_graph(tunels, where, graph);
+    return (graph);
 }
