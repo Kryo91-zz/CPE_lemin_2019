@@ -31,5 +31,7 @@ int size(char *str, char c);
 void cpy(char *str, char *cpy);
 void init_graph(main_t *m_struct, graph_t *graph);
 void create_graph(char **tunels, int where, graph_t *graph);
+char *get_name2(char **tunels, int i);
+void connect_room(graph_t *graph, char *name, char *out_name, int y);
 
 #endif /* !MAIN_H_ */
