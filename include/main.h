@@ -25,6 +25,7 @@ typedef struct graph_s
    struct graph_s *next;
 }graph_t;
 
+void map_parsing(main_t *struct_main);
 void read_file(main_t *my_struct);
 int comp(char *str1, char *str2);
 int size(char *str, char c);

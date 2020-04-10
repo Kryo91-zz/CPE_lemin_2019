@@ -14,5 +14,6 @@
 #include <unistd.h>
 
 char **my_str_to_word_array(char *str, char sep);
+int my_strncmp(char *s1, char *s2, int n);
 
 #endif /* !LIB_H_ */
