@@ -11,10 +11,10 @@
 void print_rooms(main_t *struct_main)
 {
     write(1, "#number_of_ants\n", 16);
-    write (1, struct_main->map[0], strlen(struct_main->map[0]));
+    write (1, struct_main->map[0], my_strlen(struct_main->map[0]));
     write(1, "\n#rooms\n", 8);
     for (int i = 1; struct_main->map[i]; i += 1) {
-        write (1, struct_main->map[i], strlen(struct_main->map[i]));
+        write (1, struct_main->map[i], my_strlen(struct_main->map[i]));
         write(1, "\n", 1);
     }
 }
