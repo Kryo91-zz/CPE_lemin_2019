@@ -5,8 +5,8 @@
 ** continue_graph
 */
 
-#include "include/lib.h"
-#include "include/main.h"
+#include "../include/lib.h"
+#include "../include/main.h"
 
 char *get_name2(char **tunels, int i)
 {
@@ -24,17 +24,23 @@ char *get_name2(char **tunels, int i)
     return (name);
 }
 
-void connect_room(graph_t *graph, char *name, char *out_name, int y)
+void connect_room(graph_t *graph, int y, char **tunels, int where)
 {
     int pos = 0;
     int sec_pos = 0;
     int third_pos = 0;
     int fourth_pos = 0;
+    char *name;
+    char *out_name;
 
+    name = get_name(tunels, where, y);
+    out_name = get_name2(tunels, y);
     for (pos = 0; comp(out_name, graph[pos].name) != 0; pos++) {}
     for (sec_pos = 0; comp(name, graph[sec_pos].name) != 0; sec_pos++) {}
-    for (third_pos = 0; comp(graph[sec_pos].next[third_pos].name, "stop") != 0; third_pos++) {}
+    for (third_pos = 0; comp(graph[sec_pos].next[third_pos].name, "stop") \
+!= 0; third_pos++) {}
     graph[sec_pos].next[third_pos] = graph[pos];
-    for (fourth_pos = 0; comp(graph[pos].next[fourth_pos].name, "stop") != 0; fourth_pos++) {}
+    for (fourth_pos = 0; comp(graph[pos].next[fourth_pos].name, "stop") \
+!= 0; fourth_pos++) {}
     graph[pos].next[fourth_pos] = graph[sec_pos];
 }

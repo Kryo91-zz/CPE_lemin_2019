@@ -5,8 +5,8 @@
 ** counts and returns the number of characters in the string
 */
 
-#include "include/lib.h"
-#include "include/main.h"
+#include "../include/lib.h"
+#include "../include/main.h"
 
 int my_strlen(char const *str)
 {

@@ -1,39 +1,41 @@
 ##
 ## EPITECH PROJECT, 2019
-## lemin
+## Makefile
 ## File description:
 ## Makefile
 ##
 
-SRC = $(shell find . -name '*.c')
-
-OUT = lem_in
-
-CFLAGS =  -I./include -Wall -W
-
-CFLAGS_DEBUG = -g3
-
 CC = gcc
 
-OBJ	=	$(SRC:.c=.o)
+NAME = lem_in
 
-$(OUT): re
+SRC = src/main.c \
+	src/my_str_to_word_array.c \
+	src/my_strncmp.c \
+	src/my_strlen.c \
+	src/create_graph.c \
+	src/continue_graph.c \
+	src/graph.c \
+	src/parsing.c \
+	src/read_file.c \
+	src/error_management.c \
+	src/free_fonc.c \
+	src/error_man2.c \
 
-debug:	compile_debug
+CFLAGS = -g3 -W -Wextra
 
-compile:	$(OBJ)
-	$(CC) -o $(OUT) $(OBJ) $(CFLAGS)
-	rm -f *.o
+OBJ = $(SRC:.c=.o) $(LIB:.c=.o)
 
-compile_debug:	CFLAGS += $(CFLAGS_DEBUG)
+all: $(NAME)
 
-compile_debug:	fclean	$(OBJ)
-	$(CC) -o $(OUT) $(OBJ) $(CFLAGS)
+$(NAME): $(OBJ)
+	gcc $(OBJ) $(CFLAGS) -o $(NAME)
+	rm -f $(OBJ)
 
 clean:
-	$(shell find . -name '*.o' -delete)
+	rm -f $(OBJ)
 
-fclean:	clean
-	$(RM) -rf $(OUT)
+fclean: clean
+	rm -rf $(NAME)
 
-re: fclean compile
+re: fclean all

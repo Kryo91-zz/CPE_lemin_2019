@@ -5,8 +5,8 @@
 ** create_graph
 */
 
-#include "include/lib.h"
-#include "include/main.h"
+#include "../include/lib.h"
+#include "../include/main.h"
 
 char *get_name(char **tunels, int where, int i)
 {
@@ -65,8 +65,22 @@ void create_graph(char **tunels, int where, graph_t *graph)
         outpout_malloc(graph);
     }
     for (int i = 0; i < where; i++) {
-        name = get_name(tunels, where, i);
-        out_name = get_name2(tunels, i);
-        connect_room(graph, name, out_name, i);
+        connect_room(graph, i, tunels, where);
     }
+}
+
+int get_start(main_t *m_struct)
+{
+    int nb = 0;
+    int where = 0;
+
+    for (int i = 0; i < m_struct->tunels; i++) {
+        for (int y = 0; m_struct->map[i][y] != '\0'; y++) {
+            if (m_struct->map[i][y] == '-' && where == 0) {
+                where = i;
+                break;
+            }
+        }
+    }
+    return (where);
 }

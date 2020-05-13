@@ -5,8 +5,8 @@
 ** graph
 */
 
-#include "include/lib.h"
-#include "include/main.h"
+#include "../include/lib.h"
+#include "../include/main.h"
 
 int comp(char *str1, char *str2)
 {
@@ -22,7 +22,6 @@ int comp(char *str1, char *str2)
 int size(char *str, char c)
 {
     int size = 0;
-
     for (int i = 0; str[i] != c; i++) {
         size += 1;
     }
@@ -62,15 +61,13 @@ graph_t *init_graph(main_t *m_struct, graph_t *graph)
     char **tunels;
     int where = 0;
 
-    for (int i = 0; i < m_struct->tunels; i++) {
-        if ((comp(m_struct->map[i], "##end\0")) == 0)
-            nb_start = i + 2;
-    }
     tunels = malloc(sizeof(char *) * m_struct->tunels);
     for (int i = nb_start; i < m_struct->tunels; i++) {
-        tunels[where] = malloc(sizeof(char) * (size(m_struct->map[i], '\0') + 1));
+        tunels[where] = malloc(sizeof(char) * \
+(size(m_struct->map[i], '\0') + 2));
         where += 1;
     }
+    nb_start = get_start(m_struct);
     where = fill_tab(m_struct, tunels, nb_start);
     graph = malloc(sizeof(graph_t) * where);
     create_graph(tunels, where, graph);
